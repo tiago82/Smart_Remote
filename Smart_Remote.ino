@@ -14,7 +14,6 @@ String data;
 SimpleTimer timer;
 
 void setup() {
-
   for (int i = 0; i < sizeof(myPins); i++) {
     pinMode(myPins[i], OUTPUT);
     digitalWrite(myPins[i], 0);
@@ -46,12 +45,11 @@ void setup() {
 
   server.begin();
 }
+
 void loop() {
   server.handleClient();
   timer.run();
 }
-
-
 
 void changeDeviceStatus() {
   data = server.arg("plain");
@@ -138,7 +136,6 @@ void updateDeviceStatus(int pin, boolean status) {
   Serial.print(" status : ");
   String onOffText = status ? "on" : "off";
   Serial.println(onOffText);
-
   digitalWrite(pin, status);
   server.send(200, "application/json", "Timer success");
 }
@@ -148,7 +145,6 @@ void syncData() {
   data = server.arg("plain");
   JsonDocument doc;
   deserializeJson(doc, data);
-
   JsonArray jArray = doc.as<JsonArray>();
   for (int i = 0; i < jArray.size(); i++) {
     JsonVariant device = jArray[i];
