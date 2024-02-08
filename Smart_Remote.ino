@@ -54,7 +54,7 @@ void loop() {
 
 void changeDeviceStatus(){
   data = server.arg("plain");
-  DynamicJsonDocument doc(2048);
+  JsonDocument doc;
   deserializeJson(doc, data);
 
   JsonArray jArray =doc.as<JsonArray>();
@@ -84,7 +84,7 @@ void changeDeviceStatus(){
 
 void setTimer(){
     data = server.arg("plain");
-    DynamicJsonDocument doc(2048);
+    JsonDocument doc;
     deserializeJson(doc, data);
     JsonArray jArray =doc.as<JsonArray>();
   
@@ -150,7 +150,7 @@ void updateDeviceStatus(int pin,boolean status)
    
 void syncData(){
   data = server.arg("plain");
-  DynamicJsonDocument doc(2048);
+  JsonDocument doc;
   deserializeJson(doc, data);
 
   JsonArray jArray =doc.as<JsonArray>();
