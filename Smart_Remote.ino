@@ -7,14 +7,15 @@ const char* ssid = "YOUR SSID";
 const char* password = "YOUR PASSWORD";
 WebServer server(80);
 //Change the pins you are using here
-int myPins[] = { 5, 4, 0, 2, 14, 12, 13, 15 };
+int myPins[] = {13, 15 };
 // Change the No of devices to the same number of devices on the app
-int noOfDevices = 7;
+//int noOfDevices = 7;
+const int pin_count = sizeof(myPins) / sizeof (myPins [0]); 
 String data;
 SimpleTimer timer;
 
 void setup() {
-  for (int i = 0; i < sizeof(myPins); i++) {
+  for (int i = 0; i < pin_count; i++) {
     pinMode(myPins[i], OUTPUT);
     digitalWrite(myPins[i], 0);
   }
