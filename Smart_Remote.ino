@@ -1,11 +1,11 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
+#include <WiFi.h>
+#include <WebServer.h>
 #include <ArduinoJson.h>
 #include <SimpleTimer.h>
 
 const char* ssid = "YOUR SSID";
 const char* password = "YOUR PASSWORD";
-ESP8266WebServer server;
+WebServer server(80);
 //Change the pins you are using here
 int myPins[] = { 5, 4, 0, 2, 14, 12, 13, 15 };
 // Change the No of devices to the same number of devices on the app
