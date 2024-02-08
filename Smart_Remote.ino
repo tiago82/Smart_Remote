@@ -9,12 +9,13 @@ WebServer server(80);
 //Change the pins you are using here
 int myPins[] = { 5, 4, 0, 2, 14, 12, 13, 15 };
 // Change the No of devices to the same number of devices on the app
-int noOfDevices = 7;
+//int noOfDevices = 7;
+const int pin_count = sizeof(myPins) / sizeof (myPins [0]); 
 String data;
 SimpleTimer timer;
 
 void setup() {
-  for (int i = 0; i < sizeof(myPins); i++) {
+  for (int i = 0; i < pin_count; i++) {
     pinMode(myPins[i], OUTPUT);
     digitalWrite(myPins[i], 0);
   }
@@ -72,7 +73,7 @@ void changeDeviceStatus() {
     Serial.print(" status : ");
     String onOffText = status ? "on" : "off";
     Serial.println(onOffText);
-    if (i < sizeof(myPins)) {
+    if (i < pin_count) {
       digitalWrite(myPins[i], status);
     }
   }
@@ -109,7 +110,7 @@ void setTimer() {
       Serial.print(" after : ");
       Serial.print(duration);
       Serial.println(" seconds ");
-      if (i < sizeof(myPins)) {
+      if (i < pin_count) {
         int devicePin = myPins[i];
         int timerId = timer.setTimeout(duration * 1000, [=] {
           updateDeviceStatus(devicePin, status);
@@ -151,7 +152,7 @@ void syncData() {
     String name = device["name"];
     int pin = device["pin"];
 
-    if (i < sizeof(myPins)) {
+    if (i < pin_count) {
       int devicePin = myPins[i];
       boolean status = digitalRead(devicePin);
       device["status"] = status;
